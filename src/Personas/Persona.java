@@ -16,6 +16,11 @@ public abstract class Persona {
     protected String name;
     protected LocalDate birthDate;
     protected String phone;
+    protected String email;
+
+    public String getEmail() {
+        return email;
+    }
     
     public String getId() {
         return id;
@@ -36,4 +41,14 @@ public abstract class Persona {
     public String getPhone() {
         return phone;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    
 }
