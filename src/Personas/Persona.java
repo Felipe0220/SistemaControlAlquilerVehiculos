@@ -46,8 +46,27 @@ public abstract class Persona {
         this.email = email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+     public void setPhone(String phone) {
+        if (validatePhone(phone))
+            this.phone = phone;
+    }
+    
+    private static boolean validatePhone(String phone){
+        return phone.matches("^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}$");
+    }
+
+    public Persona(String id, String name, LocalDate birthDate, String phone) {
+        this.id = id;
+        this.name = name;
+        if (UtilDate.isNotFutureDate(birthDate))
+            this.birthDate = birthDate;
+        if(validatePhone(phone))
+            this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", age="+getAge() + ", phone=" + phone;
     }
     
     
