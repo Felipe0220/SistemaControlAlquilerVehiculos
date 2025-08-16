@@ -8,6 +8,9 @@ package Excepciones;
  *
  * @author Luisf
  */
-public class ExcepcionVehiculo {
-    
+public class ExcepcionVehiculo extends Exception {
+    public ExcepcionVehiculo() {
+        super();
+    }
 }
+
