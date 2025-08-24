@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Personas;
+package Empleados;
 
+import Personas.Persona;
 import java.time.LocalDate;
 
 /**
@@ -11,10 +12,13 @@ import java.time.LocalDate;
  * @author kevin
  */
 public class Empleado extends Persona {
-     private String puesto;
+
+    private String puesto;
     private double salario;
-    public Empleado(String id, String name, LocalDate birthDate, String phone) {
+
+    public Empleado(String id, String name, LocalDate birthDate, String phone, String email, String puesto, double salario) {
         super(id, name, birthDate, phone);
+        this.setEmail(email);
         this.puesto = puesto;
         this.salario = salario;
     }
@@ -37,7 +41,7 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return "Empleado{" + "puesto=" + puesto + ", salario=" + salario + '}';
+        return super.toString() + ", email=" + email + ", puesto=" + puesto + ", salario=" + salario;
     }
-    
+
 }
