@@ -11,21 +11,21 @@ import java.util.ArrayList;
  *
  * @author kevin
  */
-public class ListaAlquileres implements Lista<Alquiler> {
-    private ArrayList<Alquiler> alquileres;
+public class ListaAlquileres implements Lista<Contrato> {
+    private ArrayList<Contrato> alquileres;
 
     public ListaAlquileres() {
         this.alquileres = new ArrayList<>();
     }
 
     @Override
-    public boolean Eliminar(Alquiler v) {
+    public boolean Eliminar(Contrato v) {
         return alquileres.remove(v);
     }
 
     @Override
-    public Alquiler Buscar(Object id) {
-        for (Alquiler a : alquileres) {
+    public Contrato Buscar(Object id) {
+        for (Contrato a : alquileres) {
             if (a.getIdAlquiler() == (int) id) { // suponiendo que el "Object" es un int
                 return a;
             }
@@ -34,7 +34,7 @@ public class ListaAlquileres implements Lista<Alquiler> {
     }
 
     @Override
-    public boolean Actualizar(Alquiler v) {
+    public boolean Actualizar(Contrato v) {
         for (int i = 0; i < alquileres.size(); i++) {
             if (alquileres.get(i).getIdAlquiler() == v.getIdAlquiler()) {
                 alquileres.set(i, v);
@@ -45,18 +45,18 @@ public class ListaAlquileres implements Lista<Alquiler> {
     }
 
     @Override
-    public boolean modificarReserva(Alquiler v) {
+    public boolean modificarReserva(Contrato v) {
         return Actualizar(v);//igual actualizar
     }
 
     @Override
-    public boolean cancelarReserva(Alquiler v) {
+    public boolean cancelarReserva(Contrato v) {
         return Eliminar(v); //igual que eliminar
     }
 
     @Override
-    public Alquiler buscarReservaPorCliente(Object cliente) {
-        for (Alquiler a : alquileres) {
+    public Contrato buscarReservaPorCliente(Object cliente) {
+        for (Contrato a : alquileres) {
             if (a.getCliente().equals(cliente)) {
                 return a;
             }
@@ -65,7 +65,7 @@ public class ListaAlquileres implements Lista<Alquiler> {
     }
 
     @Override
-    public boolean confirmarReserva(Alquiler v) {
+    public boolean confirmarReserva(Contrato v) {
      if (!alquileres.contains(v)) {
             alquileres.add(v);
             return true;
@@ -73,7 +73,7 @@ public class ListaAlquileres implements Lista<Alquiler> {
         return false;
     }
 
-    public ArrayList<Alquiler> getAlquileres() {
+    public ArrayList<Contrato> getAlquileres() {
         return alquileres;
     }
 }
