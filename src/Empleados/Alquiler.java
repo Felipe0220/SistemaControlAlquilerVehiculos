@@ -4,7 +4,10 @@
  */
 package Empleados;
 
-import java.util.ArrayList;
+import Clientes.Cliente;
+import Vehiculos.Vehiculo;
+import java.time.LocalDate;
+
 
 /**
  *
@@ -12,69 +15,72 @@ import java.util.ArrayList;
  */
 public class Alquiler {
     private int idAlquiler;
-    private String vehiculo;
-    private String cliente;
-    private String fechaInicio;
-    private String fechaFin;
-    
-    private static ArrayList<Alquiler> listaAlquileres = new ArrayList<>();
-    
+    private Vehiculo vehiculo;
+    private Cliente cliente;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private String estado;
+
     public int getIdAlquiler() {
         return idAlquiler;
     }
 
-    public String getVehiculo() {
+    public void setIdAlquiler(int idAlquiler) {
+        this.idAlquiler = idAlquiler;
+    }
+
+    public Vehiculo getVehiculo() {
         return vehiculo;
     }
 
-    public String getCliente() {
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public String getFechaInicio() {
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public String getFechaFin() {
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public Alquiler(int idAlquiler, String vehiculo, String cliente, String fechaInicio, String fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Alquiler(int idAlquiler, Vehiculo vehiculo, Cliente cliente, LocalDate fechaInicio, LocalDate fechaFin, String estado) {
         this.idAlquiler = idAlquiler;
         this.vehiculo = vehiculo;
         this.cliente = cliente;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-    }
-    
-    
-     public static void agregarAlquiler(Alquiler a) {
-        listaAlquileres.add(a);
-    }
-
-    public static Alquiler buscarAlquiler(int id) {
-        for (Alquiler a : listaAlquileres) {
-            if (a.getIdAlquiler() == id) {
-                return a;
-            }
-        }
-        return null;
-    }
-
-    public static void eliminarAlquiler(int id) {
-        Alquiler a = buscarAlquiler(id);
-        if (a != null) {
-            listaAlquileres.remove(a);
-        }
-    }
-
-    public static ArrayList<Alquiler> getListaAlquileres() {
-        return listaAlquileres;
+        this.estado = "activo";
     }
 
     @Override
     public String toString() {
-        return "Alquiler{" + "idAlquiler=" + idAlquiler + ", vehiculo=" + vehiculo + ", cliente=" + cliente + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + '}';
+        return "Alquiler{" + "idAlquiler=" + idAlquiler + ", vehiculo=" + vehiculo.getPlaca() + ", cliente=" + cliente.getId() + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
     }
     
 }
