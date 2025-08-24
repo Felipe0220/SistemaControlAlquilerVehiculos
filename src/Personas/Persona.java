@@ -52,7 +52,7 @@ public abstract class Persona {
     }
     
     private static boolean validatePhone(String phone){
-        return phone.matches("^[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}$");
+        return phone.matches("^[0-9]{4}-[0-9]{4}$");
     }
 
     public Persona(String id, String name, LocalDate birthDate, String phone) {
