@@ -4,7 +4,7 @@
  */
 package Vehiculos;
 
-import Excepciones.ExcepcionVehiculo;
+import Excepciones.Excepcion;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -13,25 +13,25 @@ import java.util.HashMap;
  * @author Luisf
  */
 public class ValidacionVehiculo {
-     public static void validarAnio(int año) throws ExcepcionVehiculo {
+     public static void validarAnio(int año) throws Excepcion {
         int actual = LocalDate.now().getYear();
         if (año > actual || año < (actual - 20)) {
-            throw new ExcepcionVehiculo();
+            throw new Excepcion();
         }
     }
-    public static void validarTipo(Tipo tipo) throws ExcepcionVehiculo {
+    public static void validarTipo(Tipo tipo) throws Excepcion {
         if (tipo == Tipo.Sedan) {
-            throw new ExcepcionVehiculo();
+            throw new Excepcion();
         }
     }
-    public static void validarEstado(Estado estado) throws ExcepcionVehiculo {
+    public static void validarEstado(Estado estado) throws Excepcion {
         if (estado == Estado.Reservado) {
-            throw new ExcepcionVehiculo();
+            throw new Excepcion();
         }
     }
-    public static void validarPlacaUnica(String placa, HashMap<String, Vehiculo> map) throws ExcepcionVehiculo {
+    public static void validarPlacaUnica(String placa, HashMap<String, Vehiculo> map) throws Excepcion {
         if (map.containsKey(placa)) {
-            throw new ExcepcionVehiculo();
+            throw new Excepcion();
         }
     }
 }

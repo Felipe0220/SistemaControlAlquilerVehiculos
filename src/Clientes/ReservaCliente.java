@@ -4,7 +4,9 @@
  */
 package Clientes;
 
+import Excepciones.Excepcion;
 import Vehiculos.Estado;
+import static Vehiculos.Estado.Disponible;
 import Vehiculos.Tipo;
 import java.time.LocalDate;
 
@@ -21,13 +23,29 @@ public class ReservaCliente {
     private LocalDate fechaFin;
     private double costoTotal;
 
-    public ReservaCliente(String idReserva, Cliente cliente, Estado estado, Tipo tipo, LocalDate fechaInicio, LocalDate fechaFin, double costoTotal) {
+    public ReservaCliente(String idReserva, Cliente cliente, Tipo tipo, LocalDate fechaInicio, LocalDate fechaFin, double costoTotal) throws Excepcion {
         this.idReserva = idReserva;
+        
+        
         this.cliente = cliente;
-        this.estado = estado;
+        
+        
+        this.estado = Disponible;
+        
+        
         this.tipo = tipo;
+        
+         if (fechaInicio.isBefore(LocalDate.now())) {
+        throw new Excepcion();
+    }
         this.fechaInicio = fechaInicio;
+        
+        if (!fechaFin.isAfter(fechaInicio)) {
+        throw new Excepcion();
+    }
         this.fechaFin = fechaFin;
+        
+        
         this.costoTotal = costoTotal;
     }
 
