@@ -6,7 +6,7 @@ package Empleados;
 
 import Utils.UtilDate;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+
 
 /**
  *
@@ -16,8 +16,7 @@ public class Listaempleados {
 
     private ArrayList<Empleado> empleados;
 
-    private static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-
+   
     public Listaempleados() {
         empleados = new ArrayList<>();
     }
@@ -32,10 +31,8 @@ public class Listaempleados {
             return false;
         }
 
-        if (!validarEmail(e.getEmail())) {
-            return false;
-        }
-
+   
+       
         empleados.add(e);
         return true;
     }
@@ -50,7 +47,7 @@ public class Listaempleados {
             e.setPhone(telefono);
         }
 
-        if (email != null && !email.isEmpty() && validarEmail(email)) {
+        if (email != null && !email.isEmpty()) {
             e.setEmail(email);
         }
 
@@ -83,7 +80,4 @@ public class Listaempleados {
         return empleados;
     }
 
-    private boolean validarEmail(String email) {
-        return Pattern.matches(EMAIL_REGEX, email);
-    }
 }

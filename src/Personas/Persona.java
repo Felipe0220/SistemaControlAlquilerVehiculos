@@ -6,6 +6,7 @@ package Personas;
 
 import Utils.UtilDate;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -17,6 +18,8 @@ public abstract class Persona {
     protected LocalDate birthDate;
     protected String phone;
     protected String email;
+    protected static final String EMAIL_REGEX = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
 
     public String getEmail() {
         return email;
@@ -43,6 +46,7 @@ public abstract class Persona {
     }
 
     public void setEmail(String email) {
+        if(validarEmail(email))
         this.email = email;
     }
 
@@ -54,7 +58,9 @@ public abstract class Persona {
     private static boolean validatePhone(String phone){
         return phone.matches("^[0-9]{4}-[0-9]{4}$");
     }
-
+    private boolean validarEmail(String email) {
+        return Pattern.matches(EMAIL_REGEX, email);
+    }
     public Persona(String id, String name, LocalDate birthDate, String phone) {
         this.id = id;
         this.name = name;
