@@ -16,6 +16,12 @@ import java.util.Queue;
 public class QueueReserva implements Lista<ReservaCliente> {
     private Queue<ReservaCliente> reservasEnEspera = new LinkedList<>();
 
+    
+    @Override
+    public boolean Agregar(ReservaCliente v) {
+        return reservasEnEspera.add(v); // nuevo Kevin añade al final de la cola
+    }
+    
     @Override
     public boolean modificarReserva(ReservaCliente v) {
         for (ReservaCliente r : reservasEnEspera) {

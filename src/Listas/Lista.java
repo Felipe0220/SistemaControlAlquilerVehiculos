@@ -9,6 +9,7 @@ package Listas;
  * @author Luisf
  */
 public interface Lista <V> {
+    public boolean Agregar (V v);
     public boolean Eliminar(V v);
     public V Buscar(Object placa);
     public boolean Actualizar(V v);

@@ -17,7 +17,11 @@ public class ListaContratos implements Lista<Contrato> {
     public ListaContratos() {
         contratos = new ArrayList<>();
     }
-
+    @Override
+    public boolean Agregar(Contrato c) {
+        return contratos.add(c); // devuelve true si lo agrega correctamente
+    }
+    
     @Override
     public boolean Eliminar(Contrato c) {
         return contratos.remove(c);

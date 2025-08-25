@@ -17,6 +17,15 @@ public class HashMapVehiculo implements Lista<Vehiculo> {
     public HashMapVehiculo() {
         this.map = new HashMap<>();
     }
+        @Override
+    public boolean Agregar(Vehiculo v) {
+        if (!map.containsKey(v.getPlaca())) {
+            map.put(v.getPlaca(), v);
+            return true;
+        }
+        return false; // ya existe un vehículo con esa placa
+    }
+    
     @Override
     public boolean Eliminar(Vehiculo v) {
         if (map.containsKey(v.getPlaca())) {
