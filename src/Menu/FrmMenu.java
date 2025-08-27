@@ -10,6 +10,7 @@ import Clientes.InFr_BuscarCliente;
 
 import Empleados.InFr_GestionarEmpleado;
 import Empleados.InFr_BuscarEmpleado;
+import Empleados.Listaempleados;
 
 
 import Vehiculos.InFr_GestionarVehiculo;
@@ -32,8 +33,10 @@ public class FrmMenu extends javax.swing.JFrame {
     /**
      * Creates new form FrmMenu
      */
+    private Listaempleados Listaempleados;
     public FrmMenu() {
         initComponents();
+         Listaempleados = new Listaempleados();
     }
 
     /**
@@ -196,9 +199,10 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIT_Ag_VehiculoActionPerformed
 
     private void jMIT_Ag_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_EmpleadoActionPerformed
-         InFr_GestionarEmpleado a = new InFr_GestionarEmpleado();
-    this.jDesktopPane1.add(a);
-    a.setVisible(true);
+   InFr_GestionarEmpleado empleadoFrame = new InFr_GestionarEmpleado(Listaempleados);
+    jDesktopPane1.add(empleadoFrame);
+    empleadoFrame.setVisible(true);
+    empleadoFrame.toFront();
     }//GEN-LAST:event_jMIT_Ag_EmpleadoActionPerformed
 
     private void jMIT_Bu_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Bu_EmpleadoActionPerformed
