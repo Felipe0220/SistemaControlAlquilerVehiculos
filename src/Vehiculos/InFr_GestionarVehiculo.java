@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package Clientes;
+package Vehiculos;
 
 /**
  *
  * @author UTN
  */
-public class Eliminar extends javax.swing.JInternalFrame {
+public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form NewJInternalFrame
+     * Creates new form InFr_AgregarVehiculo
      */
-    public Eliminar() {
+    public InFr_GestionarVehiculo() {
         initComponents();
     }
 
@@ -26,30 +26,15 @@ public class Eliminar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-
-        jLabel1.setText("Eliminar cliente");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabel1)
-                .addContainerGap(153, Short.MAX_VALUE))
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addContainerGap(224, Short.MAX_VALUE))
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
@@ -57,6 +42,5 @@ public class Eliminar extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

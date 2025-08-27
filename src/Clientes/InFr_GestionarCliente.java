@@ -8,12 +8,12 @@ package Clientes;
  *
  * @author UTN
  */
-public class Agregar extends javax.swing.JInternalFrame {
+public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Agregar
      */
-    public Agregar() {
+    public InFr_GestionarCliente() {
         initComponents();
     }
 

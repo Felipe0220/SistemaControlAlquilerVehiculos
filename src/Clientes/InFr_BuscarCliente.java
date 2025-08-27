@@ -8,12 +8,12 @@ package Clientes;
  *
  * @author UTN
  */
-public class Actualizar extends javax.swing.JInternalFrame {
+public class InFr_BuscarCliente extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Actualizar
+     * Creates new form Buscar
      */
-    public Actualizar() {
+    public InFr_BuscarCliente() {
         initComponents();
     }
 
@@ -33,23 +33,23 @@ public class Actualizar extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jLabel1.setText("Actualizar cliente");
+        jLabel1.setText("Buscar CLiente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
+                .addGap(172, 172, 172)
                 .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         pack();

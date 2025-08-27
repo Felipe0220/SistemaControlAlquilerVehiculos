@@ -4,10 +4,17 @@
  */
 package Menu;
 
-import Clientes.Actualizar;
-import Clientes.Agregar;
-import Clientes.Buscar;
-import Clientes.Eliminar;
+
+import Clientes.InFr_GestionarCliente;
+import Clientes.InFr_BuscarCliente;
+
+import Empleados.InFr_GestionarEmpleado;
+import Empleados.InFr_BuscarEmpleado;
+
+
+import Vehiculos.InFr_GestionarVehiculo;
+import Vehiculos.InFr_BuscarVehiculo;
+
 
 
 
@@ -42,74 +49,111 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMIT_Ag_Cliente = new javax.swing.JMenuItem();
+        jMIT_Bu_Cliente = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMIT_Ag_Vehiculo = new javax.swing.JMenuItem();
+        jMIT_Bu_Vehiculo = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMIT_Ag_Empleado = new javax.swing.JMenuItem();
+        jMIT_Bu_Empleado = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMIT_Ag_Reserva = new javax.swing.JMenuItem();
+        jMIT_Bu_Reserva = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jMenu1.setText("house");
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Clientes");
 
-        jMenuItem1.setText("Agregar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMIT_Ag_Cliente.setText("Agregar");
+        jMIT_Ag_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMIT_Ag_ClienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(jMIT_Ag_Cliente);
 
-        jMenuItem2.setText("Eliminar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMIT_Bu_Cliente.setText("Buscar");
+        jMIT_Bu_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMIT_Bu_ClienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setText("Buscar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Actualizar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(jMIT_Bu_Cliente);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Vehiculos ");
+
+        jMIT_Ag_Vehiculo.setText("Agregar");
+        jMIT_Ag_Vehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIT_Ag_VehiculoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMIT_Ag_Vehiculo);
+
+        jMIT_Bu_Vehiculo.setText("Buscar");
+        jMIT_Bu_Vehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIT_Bu_VehiculoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMIT_Bu_Vehiculo);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Empleados");
+
+        jMIT_Ag_Empleado.setText("Agregar");
+        jMIT_Ag_Empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIT_Ag_EmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMIT_Ag_Empleado);
+
+        jMIT_Bu_Empleado.setText("Buscar");
+        jMIT_Bu_Empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIT_Bu_EmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMIT_Bu_Empleado);
+
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Contratos");
+        jMenu5.setText("Reservas");
+
+        jMIT_Ag_Reserva.setText("Agregar");
+        jMenu5.add(jMIT_Ag_Reserva);
+
+        jMIT_Bu_Reserva.setText("Buscar");
+        jMenu5.add(jMIT_Bu_Reserva);
+
         jMenuBar1.add(jMenu5);
+
+        jMenu6.setText("Contratos");
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,29 +171,41 @@ public class FrmMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    Agregar a = new Agregar();
+    private void jMIT_Ag_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_ClienteActionPerformed
+    InFr_GestionarCliente a = new InFr_GestionarCliente();
     this.jDesktopPane1.add(a);
     a.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMIT_Ag_ClienteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-     Eliminar b = new Eliminar();
-    this.jDesktopPane1.add(b);
-    b.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-     Actualizar e = new Actualizar();
-    this.jDesktopPane1.add(e);
-    e.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    Buscar c = new Buscar();
+    private void jMIT_Bu_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Bu_ClienteActionPerformed
+    InFr_BuscarCliente c = new InFr_BuscarCliente();
     this.jDesktopPane1.add(c);
     c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMIT_Bu_ClienteActionPerformed
+
+    private void jMIT_Bu_VehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Bu_VehiculoActionPerformed
+       InFr_BuscarVehiculo c = new InFr_BuscarVehiculo();
+    this.jDesktopPane1.add(c);
+    c.setVisible(true);    
+    }//GEN-LAST:event_jMIT_Bu_VehiculoActionPerformed
+
+    private void jMIT_Ag_VehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_VehiculoActionPerformed
+   InFr_GestionarVehiculo a = new InFr_GestionarVehiculo();
+    this.jDesktopPane1.add(a);
+    a.setVisible(true);        
+    }//GEN-LAST:event_jMIT_Ag_VehiculoActionPerformed
+
+    private void jMIT_Ag_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_EmpleadoActionPerformed
+         InFr_GestionarEmpleado a = new InFr_GestionarEmpleado();
+    this.jDesktopPane1.add(a);
+    a.setVisible(true);
+    }//GEN-LAST:event_jMIT_Ag_EmpleadoActionPerformed
+
+    private void jMIT_Bu_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Bu_EmpleadoActionPerformed
+        InFr_BuscarEmpleado c = new InFr_BuscarEmpleado();
+    this.jDesktopPane1.add(c);
+    c.setVisible(true);
+    }//GEN-LAST:event_jMIT_Bu_EmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,15 +234,20 @@ public class FrmMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMIT_Ag_Cliente;
+    private javax.swing.JMenuItem jMIT_Ag_Empleado;
+    private javax.swing.JMenuItem jMIT_Ag_Reserva;
+    private javax.swing.JMenuItem jMIT_Ag_Vehiculo;
+    private javax.swing.JMenuItem jMIT_Bu_Cliente;
+    private javax.swing.JMenuItem jMIT_Bu_Empleado;
+    private javax.swing.JMenuItem jMIT_Bu_Reserva;
+    private javax.swing.JMenuItem jMIT_Bu_Vehiculo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }
