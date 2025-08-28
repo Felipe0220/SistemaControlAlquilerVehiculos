@@ -93,15 +93,23 @@ public class InFr_BuscarVehiculo extends javax.swing.JInternalFrame {
 
         tblVehiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Placa", "Marca", "Modelo", "Año", "Tipo", "Estado"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblVehiculo);
 
         jButton1.setText("jButton1");
@@ -147,18 +155,25 @@ public class InFr_BuscarVehiculo extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       int row =tblVehiculo.getSelectedRow();
         if (row==-1){
-            UtilGui.showErrorMessage(this, "Debe seleccionar un animal", "Error");
+            UtilGui.showErrorMessage(this, "Debe seleccionar un carro", "Error");
             return;
         }
-        String placa=String.valueOf(tblVehiculo.getValueAt(row,0));
-       vehiculo=list.Buscar(placa);
-        setVisible(false);
-        this.dispose();
+          int modelRow = tblVehiculo.convertRowIndexToModel(row);
+        String placa = String.valueOf(model.getValueAt(modelRow, 0));
+         vehiculo = list.buscarPorPlaca(placa);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFiltroActionPerformed
-       rowFilter = RowFilter.regexFilter("(?i)" + jTxtFiltro.getText());
-        sorter.setRowFilter(rowFilter);
+        String filterText = jTxtFiltro.getText().trim();
+        if (filterText.isEmpty()) {
+            sorter.setRowFilter(null);
+        } else {
+            // Buscar en todas las columnas (0-5)
+            RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter("(?i)" + filterText, 0, 1, 2, 3, 4, 5);
+            sorter.setRowFilter(filter);
+        }
+    
+
     }//GEN-LAST:event_jTxtFiltroActionPerformed
 
 

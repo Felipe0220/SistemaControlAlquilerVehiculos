@@ -190,15 +190,15 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIT_Bu_ClienteActionPerformed
 
     private void jMIT_Bu_VehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Bu_VehiculoActionPerformed
-       InFr_BuscarVehiculo c = new InFr_BuscarVehiculo();
+     InFr_BuscarVehiculo c = new InFr_BuscarVehiculo();
     this.jDesktopPane1.add(c);
-    c.setVisible(true);    
+    c.setVisible(true);     
     }//GEN-LAST:event_jMIT_Bu_VehiculoActionPerformed
 
     private void jMIT_Ag_VehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_VehiculoActionPerformed
-   InFr_GestionarVehiculo a = new InFr_GestionarVehiculo();
-    this.jDesktopPane1.add(a);
-    a.setVisible(true);        
+       InFr_GestionarVehiculo v = new InFr_GestionarVehiculo();
+    this.jDesktopPane1.add(v);
+    v.setVisible(true);        
     }//GEN-LAST:event_jMIT_Ag_VehiculoActionPerformed
 
     private void jMIT_Ag_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_EmpleadoActionPerformed

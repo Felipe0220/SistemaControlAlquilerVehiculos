@@ -137,18 +137,22 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
 
          
 private void search() {
-    InFr_BuscarVehiculo InFrBuscar = new InFr_BuscarVehiculo();
-    //FrmMenu.add(InFrBuscar); // Asumo FrmMenu es la ventana principal contenedora
+  InFr_BuscarVehiculo buscarFrame = new InFr_BuscarVehiculo();
+        buscarFrame.setList(list);
+        
+        // Obtener el escritorio del menú principal
+        javax.swing.JDesktopPane desktop = (javax.swing.JDesktopPane) this.getParent();
+        desktop.add(buscarFrame);
+        buscarFrame.setVisible(true);
 
-    InFrBuscar.setList(list);
-    InFrBuscar.setVisible(true);
+        // Centrar el internal frame
+        buscarFrame.setLocation((desktop.getWidth() - buscarFrame.getWidth()) / 2,
+                               (desktop.getHeight() - buscarFrame.getHeight()) / 2);
 
-    vehiculo = InFrBuscar.getVehiculo();
-    if (vehiculo != null) {
-        showData();
-    } else {
-        clear();
-    }
+        vehiculo = buscarFrame.getVehiculo();
+        if (vehiculo != null) {
+            showData();
+        }
 }
     
 
@@ -323,6 +327,11 @@ private void search() {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jBt_Agregar.setText("Agregar");
+        jBt_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt_AgregarActionPerformed(evt);
+            }
+        });
 
         jBt_Elliminar.setText("Eliminar");
         jBt_Elliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -332,6 +341,11 @@ private void search() {
         });
 
         jBt_Buscar.setText("Buscar");
+        jBt_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt_BuscarActionPerformed(evt);
+            }
+        });
 
         jBt_Actualizar.setText("Actualizar");
 
@@ -422,7 +436,7 @@ private void search() {
     }//GEN-LAST:event_jTxt_PlacaActionPerformed
 
     private void jBt_ElliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_ElliminarActionPerformed
-        // TODO add your handling code here:
+     delete();   // TODO add your handling code here:
     }//GEN-LAST:event_jBt_ElliminarActionPerformed
 
     private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTipoActionPerformed
@@ -436,6 +450,14 @@ private void search() {
     private void jText_AñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_AñoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jText_AñoActionPerformed
+
+    private void jBt_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_AgregarActionPerformed
+      save();  // TODO add your handling code here:
+    }//GEN-LAST:event_jBt_AgregarActionPerformed
+
+    private void jBt_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_BuscarActionPerformed
+   search();     // TODO add your handling code here:
+    }//GEN-LAST:event_jBt_BuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

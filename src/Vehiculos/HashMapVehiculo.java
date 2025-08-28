@@ -88,6 +88,9 @@ public class HashMapVehiculo implements Lista<Vehiculo> {
     public boolean confirmarReserva(Vehiculo v) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    public Vehiculo buscarPorPlaca(String placa) {
+    return map.get(placa);
+}
 }
 
 

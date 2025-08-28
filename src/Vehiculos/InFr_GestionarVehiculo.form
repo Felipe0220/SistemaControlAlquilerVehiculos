@@ -411,6 +411,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBt_AgregarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBt_Elliminar">
               <Properties>
@@ -424,6 +427,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBt_BuscarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jBt_Actualizar">
               <Properties>
