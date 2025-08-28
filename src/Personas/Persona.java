@@ -50,6 +50,18 @@ public abstract class Persona {
         this.email = email;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
      public void setPhone(String phone) {
         if (validatePhone(phone))
             this.phone = phone;

@@ -6,6 +6,8 @@ package Vehiculos;
 
 
 
+import Clientes.InFr_GestionarCliente;
+import ContratosAlquiler.InFr_Contrato;
 import Utils.UtilDate;
 import Utils.UtilGui;
 
@@ -16,11 +18,14 @@ import Vehiculos.Estado;
 import Vehiculos.InFr_BuscarVehiculo;
 import Vehiculos.Tipo;
 import Vehiculos.Vehiculo;
+import java.awt.Container;
 
 
 
 import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -95,10 +100,30 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
             return;
         }
         UtilGui.showMessage(this,"registro agregado "+vehiculo.getModelo(),"agregado");
+        refrescarFormularioContratos();
         showTipo();
         showEstado();
     }
-         
+  private void refrescarFormularioContratos() {
+    // Obtener el desktop pane del padre (FrmMenu)
+    Container parent = this.getParent();
+    while (parent != null && !(parent instanceof JDesktopPane)) {
+        parent = parent.getParent();
+    }
+    
+    if (parent instanceof JDesktopPane) {
+        JDesktopPane desktopPane = (JDesktopPane) parent;
+        
+        // Buscar FrmContratos entre los internal frames abiertos
+        for (JInternalFrame frame : desktopPane.getAllFrames()) {
+            if (frame instanceof InFr_Contrato && frame.isVisible()) {
+                InFr_Contrato frmContratos = (InFr_Contrato) frame;
+                frmContratos.refrescarVehiculos();
+                break;
+            }
+        }
+    }
+}
          private void Update(){
         if(!validateRequiere()){
            UtilGui.showErrorMessage( this, "faltan datos","error");

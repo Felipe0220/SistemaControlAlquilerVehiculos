@@ -8,11 +8,13 @@ package Menu;
 import Clientes.InFr_GestionarCliente;
 import Clientes.InFr_BuscarCliente;
 import Clientes.ListaCliente;
-import ContratosAlquiler.FrmContratos;
+
+import ContratosAlquiler.InFr_Contrato;
 
 import Empleados.InFr_GestionarEmpleado;
 import Empleados.InFr_BuscarEmpleado;
 import Empleados.Listaempleados;
+import Vehiculos.HashMapVehiculo;
 
 
 import Vehiculos.InFr_GestionarVehiculo;
@@ -43,10 +45,12 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     private Listaempleados Listaempleados;
     private ListaCliente ListaCliente;
+    private HashMapVehiculo mapaVehiculos;
     public FrmMenu() {
         initComponents();
          Listaempleados = new Listaempleados();
          ListaCliente = new ListaCliente();
+          mapaVehiculos = new HashMapVehiculo();
          
             if (desktopPane == null) {
         desktopPane = new JDesktopPane();
@@ -258,42 +262,18 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIT_Bu_EmpleadoActionPerformed
 
     private void gContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gContratosActionPerformed
-    FrmContratos contratosFrame = new FrmContratos();
-    abrirInternalFrame(contratosFrame);
+    InFr_Contrato contratoFrame = new InFr_Contrato(ListaCliente, mapaVehiculos);
+    jDesktopPane1.add(contratoFrame);
+    contratoFrame.setVisible(true);
+    contratoFrame.toFront(); // Para traerlo al frente
+    
+    // Centrar el internal frame en el desktop pane
+    contratoFrame.setLocation(
+        (jDesktopPane1.getWidth() - contratoFrame.getWidth()) / 2,
+        (jDesktopPane1.getHeight() - contratoFrame.getHeight()) / 2
+    );
     }//GEN-LAST:event_gContratosActionPerformed
-private void abrirInternalFrame(JInternalFrame internalFrame) {
-    try {
-        // Configurar tamaño apropiado
-        internalFrame.setSize(800, 600);
-        
-        // Centrar en el desktop pane
-        Dimension desktopSize = desktopPane.getSize();
-        Dimension frameSize = internalFrame.getSize();
-        
-        int x = Math.max(0, (desktopSize.width - frameSize.width) / 2);
-        int y = Math.max(0, (desktopSize.height - frameSize.height) / 2);
-        internalFrame.setLocation(x, y);
-        
-        // Agregar al desktop pane
-        desktopPane.add(internalFrame);
-        
-        // Hacer visible
-        internalFrame.setVisible(true);
-        internalFrame.toFront();
-        
-        // Intentar seleccionarlo
-        try {
-            internalFrame.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {
-            logger.warning("No se pudo seleccionar el frame: " + e.getMessage());
-        }
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, 
-            "Error al abrir ventana: " + e.getMessage(),
-            "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
+
     /**
      * @param args the command line arguments
      */
