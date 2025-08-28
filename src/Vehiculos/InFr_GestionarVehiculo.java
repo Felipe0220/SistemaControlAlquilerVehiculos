@@ -4,12 +4,11 @@
  */
 package Vehiculos;
 
-<<<<<<< HEAD
-=======
+
 
 import Utils.UtilDate;
 import Utils.UtilGui;
->>>>>>> 67596fc (DIOOOSSS)
+
 import Menu.FrmMenu;
 import Utils.UtilDate;
 import Utils.UtilGui;
@@ -17,10 +16,9 @@ import Vehiculos.Estado;
 import Vehiculos.InFr_BuscarVehiculo;
 import Vehiculos.Tipo;
 import Vehiculos.Vehiculo;
-<<<<<<< HEAD
-=======
 
->>>>>>> 67596fc (DIOOOSSS)
+
+
 import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -136,12 +134,7 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         jTxtEstado.setSelectedItem(vehiculo.getEstado());
     }
          
-<<<<<<< HEAD
-=======
-         
-    
 
->>>>>>> 67596fc (DIOOOSSS)
          
 private void search() {
     InFr_BuscarVehiculo InFrBuscar = new InFr_BuscarVehiculo();
@@ -158,10 +151,7 @@ private void search() {
     }
 }
     
-<<<<<<< HEAD
-=======
 
->>>>>>> 67596fc (DIOOOSSS)
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
