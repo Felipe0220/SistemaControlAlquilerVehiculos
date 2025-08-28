@@ -4,7 +4,11 @@
  */
 package Vehiculos;
 
+import Utils.UtilDate;
+import Utils.UtilGui;
+import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +26,7 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         initComponents();
         list=new HashMapVehiculo();
         showTipo();
+        showEstado();
         
     }
     
@@ -33,7 +38,102 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         }
         jTxtTipo.setModel(model);
     }
-
+     
+      private void showEstado(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for(Estado estado:Estado.values()){
+            model.addElement(estado);
+            
+        }
+        jTxtEstado.setModel(model);
+    }
+        private void clear(){
+         jTxt_Placa.setText("");
+            jText_Marca.setText("");
+            jText_Modelo.setText("");
+            jText_Año.setText("");
+            jTxtTipo.setSelectedIndex(-1);
+            jTxtEstado.setSelectedIndex(-1);
+            //TxtBirthday.setText("");
+            
+    }
+        
+        private boolean validateRequiere(){
+        return UtilGui.validateRequiere(jTxt_Placa,jText_Marca,jText_Modelo,
+               jText_Año,jTxtTipo,jTxtEstado);
+    }
+        
+         private void save(){
+        if(!validateRequiere()){
+           UtilGui.showErrorMessage( this, "faltan datos","error");
+           return;  
+        }
+        String placa=jTxt_Placa.getText();
+        String marca=jText_Marca.getText();
+        String modelo=jText_Modelo.getText();
+        int año = Integer.parseInt(jText_Año.getText().trim());
+        Tipo tipovehiculo=(Tipo)jTxtTipo.getSelectedItem();
+        String estado=jTxtEstado.getSelectedItem().toString();
+        
+        vehiculo= new Vehiculo(placa,marca,modelo,año,tipovehiculo);
+        
+        if (!list.Agregar(vehiculo)){
+            JOptionPane.showMessageDialog(this,"no se agrego");
+            return;
+        }
+        UtilGui.showMessage(this,"registro agregado "+vehiculo.getModelo(),"agregado");
+        showTipo();
+        showEstado();
+    }
+         
+         private void Update(){
+        if(!validateRequiere()){
+           UtilGui.showErrorMessage( this, "faltan datos","error");
+           return;  
+        }
+         String tipo=jTxtTipo.getSelectedItem().toString();
+         String estado=jTxtTipo.getSelectedItem().toString();
+         String modelo=jText_Modelo.getText();
+      
+         //vehiculo.setZone(Zone.valueOf(zone));
+         vehiculo.setEstadovehiculo(Estado.valueOf(estado));
+          vehiculo.setModelo(modelo);
+           vehiculo.setTipovehiculo(Tipo.valueOf(estado));
+    }
+         
+         private void delete(){
+        if(vehiculo==null){
+            UtilGui.showErrorMessage(this,"no hay animal", "error");
+            return;
+        }
+        if(!list.Eliminar(vehiculo)){
+             JOptionPane.showMessageDialog(this,"no se elimino");
+             return;
+        }
+        clear();
+        }
+         
+         private void showData(){
+        jTxt_Placa.setText(vehiculo.getPlaca());
+        jText_Marca.setText(vehiculo.getMarca());
+        //TxtBirthday.setText(UtilDate.toString(animal.getBirthDate()));
+        jTxtTipo.setSelectedItem(vehiculo.getTipovehiculo());
+        jTxtEstado.setSelectedItem(vehiculo.getEstado());
+    }
+         
+          private void search(){
+       InFr_BuscarVehiculo InFrBuscar = new InFr_BuscarVehiculo (this, true);
+       //crea una ventana
+      InFrBuscar.setList(list);
+      InFrBuscar.setVisible(true);
+      
+      vehiculo=InFrBuscar.getVehiculo();
+      if(vehiculo!=null){
+          showData();
+      }else{
+          clear();
+      }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +164,7 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         jBt_Elliminar = new javax.swing.JButton();
         jBt_Buscar = new javax.swing.JButton();
         jBt_Actualizar = new javax.swing.JButton();
+        jBt_Limpiar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 102));
         setClosable(true);
@@ -108,6 +209,11 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         jText_Modelo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jText_Año.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jText_Año.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_AñoActionPerformed(evt);
+            }
+        });
 
         jLB_Placa4.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLB_Placa4.setText("Tipo\n");
@@ -211,6 +317,13 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
 
         jBt_Actualizar.setText("Actualizar");
 
+        jBt_Limpiar.setText("Limpiar");
+        jBt_Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBt_LimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -218,13 +331,15 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jBt_Agregar)
-                .addGap(77, 77, 77)
+                .addGap(18, 18, 18)
                 .addComponent(jBt_Elliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jBt_Buscar)
-                .addGap(74, 74, 74)
+                .addGap(18, 18, 18)
                 .addComponent(jBt_Actualizar)
-                .addGap(21, 21, 21))
+                .addGap(18, 18, 18)
+                .addComponent(jBt_Limpiar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +349,8 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
                     .addComponent(jBt_Agregar)
                     .addComponent(jBt_Elliminar)
                     .addComponent(jBt_Buscar)
-                    .addComponent(jBt_Actualizar))
+                    .addComponent(jBt_Actualizar)
+                    .addComponent(jBt_Limpiar))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -295,12 +411,21 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
       showTipo();
     }//GEN-LAST:event_jTxtTipoActionPerformed
 
+    private void jBt_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_LimpiarActionPerformed
+        clear();
+    }//GEN-LAST:event_jBt_LimpiarActionPerformed
+
+    private void jText_AñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_AñoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jText_AñoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBt_Actualizar;
     private javax.swing.JButton jBt_Agregar;
     private javax.swing.JButton jBt_Buscar;
     private javax.swing.JButton jBt_Elliminar;
+    private javax.swing.JButton jBt_Limpiar;
     private javax.swing.JLabel jLB_Placa;
     private javax.swing.JLabel jLB_Placa1;
     private javax.swing.JLabel jLB_Placa2;

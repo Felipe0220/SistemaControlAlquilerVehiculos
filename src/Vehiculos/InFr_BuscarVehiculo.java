@@ -4,18 +4,61 @@
  */
 package Vehiculos;
 
+import Utils.UtilDate;
+import Utils.UtilGui;
+import java.util.HashMap;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author UTN
  */
 public class InFr_BuscarVehiculo extends javax.swing.JInternalFrame {
-
+    private HashMapVehiculo list;
+    private Vehiculo vehiculo;
+    
+     private DefaultTableModel model;
+    private TableRowSorter<DefaultTableModel> sorter;
+    private RowFilter<DefaultTableModel, Object> rowFilter;
+    
+    
+    public void setList(HashMapVehiculo list) {
+        this.list = list;
+        loadTable();
+    }
+    
+     public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+     
+     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InFr_BuscarVehiculo.class.getName());
+    
+    
+    
     /**
      * Creates new form InFr_BuscarVehiculo
      */
     public InFr_BuscarVehiculo() {
+       super("Buscar Vehículo", true, true, true, true);
         initComponents();
+        
+        
+        model=(DefaultTableModel)tblVehiculo.getModel();
+        sorter=new TableRowSorter<>(model);
+        tblVehiculo.setRowSorter(sorter);
+    
     }
+    
+    private void loadTable(){
+    HashMap<String, Vehiculo> map = list.getMap();
+        model.setRowCount(0);
+        for (Vehiculo vehiculo : map.values()) {
+            Object[] data = {vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getAño(), vehiculo.getTipovehiculo(), vehiculo.getEstado()};
+            model.addRow(data);
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,26 +69,104 @@ public class InFr_BuscarVehiculo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTxtFiltro = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblVehiculo = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Buscar Vehiculo");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTxtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtFiltroActionPerformed(evt);
+            }
+        });
+
+        tblVehiculo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblVehiculo);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                    .addComponent(jTxtFiltro, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      int row =tblVehiculo.getSelectedRow();
+        if (row==-1){
+            UtilGui.showErrorMessage(this, "Debe seleccionar un animal", "Error");
+            return;
+        }
+        String placa=String.valueOf(tblVehiculo.getValueAt(row,0));
+       vehiculo=list.Buscar(placa);
+        setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtFiltroActionPerformed
+       rowFilter = RowFilter.regexFilter("(?i)" + jTxtFiltro.getText());
+        sorter.setRowFilter(rowFilter);
+    }//GEN-LAST:event_jTxtFiltroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTxtFiltro;
+    private javax.swing.JTable tblVehiculo;
     // End of variables declaration//GEN-END:variables
 }

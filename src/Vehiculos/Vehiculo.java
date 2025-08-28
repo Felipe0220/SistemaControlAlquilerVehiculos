@@ -4,6 +4,8 @@
  */
 package Vehiculos;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Luisf
@@ -14,7 +16,7 @@ public class Vehiculo {
     private String modelo;
     private int año;
     private Tipo tipovehiculo;
-    private Estado estadovehiculo;
+    private Estado estado;
 
     public String getPlaca() {
         return placa;
@@ -31,8 +33,8 @@ public class Vehiculo {
     public Tipo getTipovehiculo() {
         return tipovehiculo;
     }
-    public Estado getEstadovehiculo() {
-        return estadovehiculo;
+    public Estado getEstado() {
+        return estado;
     }
     public void setModelo(String modelo) {
         this.modelo = modelo;
@@ -41,14 +43,14 @@ public class Vehiculo {
         this.tipovehiculo = tipovehiculo;
     }
     public void setEstadovehiculo(Estado estadovehiculo) {
-        this.estadovehiculo = estadovehiculo;
+        this.estado = estadovehiculo;
     }
-    public Vehiculo(String placa, String marca, String modelo, int año, Tipo tipovehiculo, Estado estadovehiculo) {
+    public Vehiculo(String placa, String marca, String modelo, int año, Tipo tipo) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.año = año;
         this.tipovehiculo = tipovehiculo;
-        this.estadovehiculo = Estado.Disponible;
+        this.estado = Estado.Disponible;
     }
 }
