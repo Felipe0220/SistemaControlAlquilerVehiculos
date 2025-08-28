@@ -84,35 +84,44 @@ public class Contrato {
 
         // Acciones sobre el contrato
     public void finalizarContrato() {
-        if (estadoContrato == Estado.En_Alquiler) { // comparación con enum
-            estadoContrato = Estado.Disponible; // cambiar estado del contrato
-            vehiculo.setEstadovehiculo(Estado.Disponible); // libera el vehículo
+        if (estadoContrato == Estado.En_Alquiler) { 
+            estadoContrato = Estado.Disponible; 
+            vehiculo.setEstadovehiculo(Estado.Disponible);
         }
     }
 
     public void cancelarContrato() {
-        if (estadoContrato != Estado.Disponible) { // si no está finalizado
-            estadoContrato = Estado.Disponible; // marcar como disponible
-            vehiculo.setEstadovehiculo(Estado.Disponible); // liberar vehículo
+        if (estadoContrato != Estado.Disponible) { 
+            estadoContrato = Estado.Disponible; 
+            vehiculo.setEstadovehiculo(Estado.Disponible); 
         }
     }
 
-    public Contrato(int idContrato, Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio, LocalDate fechaFin, double tarifaDiaria, Estado estadoContrato) {
-        this.idContrato = idContrato;
-        this.cliente = cliente;
-        this.vehiculo = vehiculo;
+public Contrato(int idContrato, Cliente cliente, Vehiculo vehiculo, 
+                     LocalDate fechaInicio, LocalDate fechaFin, 
+                    double tarifaDiaria, Estado estadoContrato) {
+        if (cliente == null) throw new IllegalArgumentException("Cliente no puede ser nulo");
+       if (vehiculo == null) throw new IllegalArgumentException("Vehículo no puede ser nulo");
+       if (fechaInicio == null || fechaFin == null) throw new IllegalArgumentException("Fechas no pueden ser nulas");
+      if (fechaFin.isBefore(fechaInicio)) throw new IllegalArgumentException("Fecha fin debe ser posterior a fecha inicio");
+       
+         this.idContrato = idContrato;
+      this.cliente = cliente;
+         this.vehiculo = vehiculo;
         this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        long dias = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
-        this.monto = dias * tarifaDiaria;
-        this.estadoContrato = estadoContrato;
+       this.fechaFin = fechaFin;
+         
+         long dias = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+       this.monto = dias * tarifaDiaria;
+       
         
-        this.estadoContrato = Estado.En_Alquiler; 
-        this.vehiculo.setEstadovehiculo(Estado.En_Alquiler);
-        
-        
-    }
-
+   if (estadoContrato == Estado.En_Alquiler) {
+          this.estadoContrato = Estado.En_Alquiler;
+          this.vehiculo.setEstadovehiculo(Estado.En_Alquiler);
+       } else {
+            this.estadoContrato = estadoContrato;
+       }
+     }
     @Override
     public String toString() {
         return "Contrato{" + "idContrato=" + idContrato + ", cliente=" + cliente.getId() + ", vehiculo=" + vehiculo.getPlaca() + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", monto=" + monto + ", estadoContrato=" + estadoContrato + '}';

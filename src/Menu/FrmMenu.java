@@ -8,6 +8,7 @@ package Menu;
 import Clientes.InFr_GestionarCliente;
 import Clientes.InFr_BuscarCliente;
 import Clientes.ListaCliente;
+import ContratosAlquiler.FrmContratos;
 
 import Empleados.InFr_GestionarEmpleado;
 import Empleados.InFr_BuscarEmpleado;
@@ -16,6 +17,11 @@ import Empleados.Listaempleados;
 
 import Vehiculos.InFr_GestionarVehiculo;
 import Vehiculos.InFr_BuscarVehiculo;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 
 
@@ -28,7 +34,8 @@ import Vehiculos.InFr_BuscarVehiculo;
  * @author UTN
  */
 public class FrmMenu extends javax.swing.JFrame {
-    
+    private javax.swing.JDesktopPane desktopPane;
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenu.class.getName());
 
     /**
@@ -40,6 +47,12 @@ public class FrmMenu extends javax.swing.JFrame {
         initComponents();
          Listaempleados = new Listaempleados();
          ListaCliente = new ListaCliente();
+         
+            if (desktopPane == null) {
+        desktopPane = new JDesktopPane();
+        getContentPane().add(desktopPane, BorderLayout.CENTER);
+        desktopPane.setBounds(0, 0, getWidth(), getHeight());
+    }
     }
 
     /**
@@ -52,6 +65,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -67,20 +81,40 @@ public class FrmMenu extends javax.swing.JFrame {
         jMIT_Ag_Reserva = new javax.swing.JMenuItem();
         jMIT_Bu_Reserva = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        gContratos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jDesktopPane1.setLayer(jDesktopPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(292, Short.MAX_VALUE)
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -159,6 +193,15 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Contratos");
+
+        gContratos.setText("Gestor de contratos");
+        gContratos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gContratosActionPerformed(evt);
+            }
+        });
+        jMenu6.add(gContratos);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -214,6 +257,43 @@ public class FrmMenu extends javax.swing.JFrame {
     c.setVisible(true);
     }//GEN-LAST:event_jMIT_Bu_EmpleadoActionPerformed
 
+    private void gContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gContratosActionPerformed
+    FrmContratos contratosFrame = new FrmContratos();
+    abrirInternalFrame(contratosFrame);
+    }//GEN-LAST:event_gContratosActionPerformed
+private void abrirInternalFrame(JInternalFrame internalFrame) {
+    try {
+        // Configurar tamaño apropiado
+        internalFrame.setSize(800, 600);
+        
+        // Centrar en el desktop pane
+        Dimension desktopSize = desktopPane.getSize();
+        Dimension frameSize = internalFrame.getSize();
+        
+        int x = Math.max(0, (desktopSize.width - frameSize.width) / 2);
+        int y = Math.max(0, (desktopSize.height - frameSize.height) / 2);
+        internalFrame.setLocation(x, y);
+        
+        // Agregar al desktop pane
+        desktopPane.add(internalFrame);
+        
+        // Hacer visible
+        internalFrame.setVisible(true);
+        internalFrame.toFront();
+        
+        // Intentar seleccionarlo
+        try {
+            internalFrame.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            logger.warning("No se pudo seleccionar el frame: " + e.getMessage());
+        }
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, 
+            "Error al abrir ventana: " + e.getMessage(),
+            "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -240,7 +320,9 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem gContratos;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JMenuItem jMIT_Ag_Cliente;
     private javax.swing.JMenuItem jMIT_Ag_Empleado;
     private javax.swing.JMenuItem jMIT_Ag_Reserva;

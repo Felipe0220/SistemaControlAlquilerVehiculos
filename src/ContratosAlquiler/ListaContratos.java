@@ -5,6 +5,7 @@
 package ContratosAlquiler;
 
 import Listas.Lista;
+import Vehiculos.Estado;    
 import java.util.ArrayList;
 
 /**
@@ -24,19 +25,28 @@ public class ListaContratos implements Lista<Contrato> {
     
     @Override
     public boolean Eliminar(Contrato c) {
+       c.cancelarContrato();
         return contratos.remove(c);
     }
 
     @Override
-    public Contrato Buscar(Object id) {
-        for (Contrato c : contratos) {
-            if (c.getIdContrato() == (int) id) {
-                return c;
+    public Contrato Buscar(Object id)  {
+         // Mejorar la búsqueda para manejar diferentes tipos de ID
+         if (id instanceof Integer) {
+            for (Contrato c : contratos) {
+                if (c.getIdContrato() == (int) id) {
+                    return c;
+                }
             }
+             } else if (id instanceof String) {
+      for (Contrato c : contratos) {
+               if (c.getVehiculo().getPlaca().equals(id)) {
+           return c;
+            }
+           }
         }
         return null;
     }
-
     @Override
     public boolean Actualizar(Contrato v) {
         for (int i = 0; i < contratos.size(); i++) {
@@ -47,6 +57,14 @@ public class ListaContratos implements Lista<Contrato> {
         }
         return false;
     }
+    public Contrato buscarPorCliente(String clienteId) {
+       for (Contrato c : contratos) {
+          if (c.getCliente().getId().equals(clienteId)) {
+            return c;
+          }
+      }
+      return null;
+  }
 
     @Override
     public boolean modificarReserva(Contrato v) {
@@ -80,5 +98,14 @@ public class ListaContratos implements Lista<Contrato> {
 
     public ArrayList<Contrato> getContratos() {
         return contratos;
+    }
+    public ArrayList<Contrato> getContratosActivos() {
+         ArrayList<Contrato> activos = new ArrayList<>();
+         for (Contrato c : contratos) {
+    if (c.getEstadoContrato() == Estado.En_Alquiler) {
+    activos.add(c);
+    }
+    }
+    return activos;
     }
 }

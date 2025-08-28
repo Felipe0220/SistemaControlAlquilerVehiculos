@@ -53,4 +53,10 @@ public class Vehiculo {
         this.tipovehiculo = tipovehiculo;
         this.estado = Estado.Disponible;
     }
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", tipovehiculo=" + tipovehiculo + ", estado=" + estado + '}';
+    }
+    
 }
