@@ -4,17 +4,34 @@
  */
 package Vehiculos;
 
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author UTN
  */
 public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
+    HashMapVehiculo list;
+    private Vehiculo vehiculo;
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InFr_GestionarVehiculo.class.getName());
 
     /**
      * Creates new form InFr_AgregarVehiculo
      */
     public InFr_GestionarVehiculo() {
         initComponents();
+        list=new HashMapVehiculo();
+        showTipo();
+        
+    }
+    
+     private void showTipo(){
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        for(Tipo tipo:Tipo.values()){
+            model.addElement(tipo);
+            
+        }
+        jTxtTipo.setModel(model);
     }
 
     /**
@@ -96,8 +113,12 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         jLB_Placa4.setText("Tipo\n");
         jLB_Placa4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTxtTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jTxtTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTxtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTipoActionPerformed(evt);
+            }
+        });
 
         jLB_Placa3.setFont(new java.awt.Font("Sitka Text", 0, 18)); // NOI18N
         jLB_Placa3.setText("Año");
@@ -269,6 +290,10 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
     private void jBt_ElliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBt_ElliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBt_ElliminarActionPerformed
+
+    private void jTxtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTipoActionPerformed
+      showTipo();
+    }//GEN-LAST:event_jTxtTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
