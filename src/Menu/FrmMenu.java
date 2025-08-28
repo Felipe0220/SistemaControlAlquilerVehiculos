@@ -39,6 +39,7 @@ public class FrmMenu extends javax.swing.JFrame {
     public FrmMenu() {
         initComponents();
          Listaempleados = new Listaempleados();
+         ListaCliente = new ListaCliente();
     }
 
     /**

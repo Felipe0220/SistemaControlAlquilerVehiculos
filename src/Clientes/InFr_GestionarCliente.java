@@ -4,8 +4,11 @@
  */
 package Clientes;
 
+import Empleados.Empleado;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,14 +19,30 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form Agregar
      */
-    private ListaCliente listacliente;
+    private ListaCliente ListaCliente;
     
     public InFr_GestionarCliente(ListaCliente listacliente) {
+        this.ListaCliente=listacliente;
         initComponents();
-        this.listacliente=listacliente;
+        cargarClienteEnTabla();
         
     }
-
+      
+             private void cargarClienteEnTabla() {
+        DefaultTableModel model = (DefaultTableModel) tblCliente.getModel();
+        model.setRowCount(0); // Limpiar tabla
+        
+        for (Cliente emp : ListaCliente.getClientes()) {
+            Object[] row = {
+                emp.getId(),
+                emp.getName(),
+                emp.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                emp.getPhone(),
+                emp.getLicense()
+            };
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,7 +70,7 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
         BtnLimpiar = new javax.swing.JButton();
         txtTelefono = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtCliente = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -200,8 +219,8 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JtCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        JtCliente.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -227,7 +246,7 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(JtCliente);
+        jScrollPane1.setViewportView(tblCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,22 +275,25 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
         String license=txtLicencia.getText();
         String id=txtCedula.getText();
         String name=txtNombre.getText();
-        LocalDate birthDate=LocalDate.parse(JftFechaNaci.getText());
+        LocalDate birthDate=LocalDate.parse(JftFechaNaci.getText().trim(), 
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String phone=txtTelefono.getText();
         
         Cliente cliente=new Cliente(license, id, name, birthDate, phone);
-        listacliente.agregarCliente(cliente);
+        ListaCliente.agregarCliente(cliente);
         JOptionPane.showMessageDialog(this, "Cliente agregado correctamente.");
+        cargarClienteEnTabla();
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
         String id=txtCedula.getText();
-        Cliente cliente=listacliente.buscarClientePorId(id);
+        Cliente cliente=ListaCliente.buscarClientePorId(id);
         
         if (cliente !=null){
             txtNombre.setText(cliente.getName());
             txtTelefono.setText(cliente.getPhone());
             JOptionPane.showMessageDialog(this, "Cliente encontrado.");
+            cargarClienteEnTabla();
         }else{
             JOptionPane.showMessageDialog(this, "Cliente no encontrado");
         }
@@ -279,16 +301,20 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
 
     private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
         String id=txtCedula.getText();
-        boolean eliminado=listacliente.eliminarCliente(id);
+        boolean eliminado=ListaCliente.eliminarCliente(id);
         
         if (eliminado){
             JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente");
             txtCedula.setText("");
             txtNombre.setText("");
             txtTelefono.setText("");
+            
+            
+            cargarClienteEnTabla();
         }else{
             JOptionPane.showMessageDialog(this, "Cliente no encontrado");
         }
+        
     }//GEN-LAST:event_BtnEliminarActionPerformed
 
     private void BtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimpiarActionPerformed
@@ -307,7 +333,6 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JFormattedTextField JftFechaNaci;
-    private javax.swing.JTable JtCliente;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -317,6 +342,7 @@ public class InFr_GestionarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtLicencia;
     private javax.swing.JTextField txtNombre;

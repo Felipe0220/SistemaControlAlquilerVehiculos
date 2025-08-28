@@ -22,7 +22,7 @@ public class InFr_GestionarEmpleado extends javax.swing.JInternalFrame {
     private Listaempleados Listaempleados;
     
     public InFr_GestionarEmpleado(Listaempleados listaempleados) {
-         this.Listaempleados = listaempleados;;
+         this.Listaempleados = listaempleados;
         initComponents();
         cargarEmpleadosEnTabla();
     }
