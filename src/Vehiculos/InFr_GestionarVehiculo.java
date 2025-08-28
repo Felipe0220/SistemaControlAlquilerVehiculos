@@ -4,8 +4,13 @@
  */
 package Vehiculos;
 
+import Menu.FrmMenu;
 import Utils.UtilDate;
 import Utils.UtilGui;
+import Vehiculos.Estado;
+import Vehiculos.InFr_BuscarVehiculo;
+import Vehiculos.Tipo;
+import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -121,19 +126,22 @@ public class InFr_GestionarVehiculo extends javax.swing.JInternalFrame {
         jTxtEstado.setSelectedItem(vehiculo.getEstado());
     }
          
-          private void search(){
-       InFr_BuscarVehiculo InFrBuscar = new InFr_BuscarVehiculo (this, true);
-       //crea una ventana
-      InFrBuscar.setList(list);
-      InFrBuscar.setVisible(true);
-      
-      vehiculo=InFrBuscar.getVehiculo();
-      if(vehiculo!=null){
-          showData();
-      }else{
-          clear();
-      }
+         
+private void search() {
+    InFr_BuscarVehiculo InFrBuscar = new InFr_BuscarVehiculo();
+    //FrmMenu.add(InFrBuscar); // Asumo FrmMenu es la ventana principal contenedora
+
+    InFrBuscar.setList(list);
+    InFrBuscar.setVisible(true);
+
+    vehiculo = InFrBuscar.getVehiculo();
+    if (vehiculo != null) {
+        showData();
+    } else {
+        clear();
     }
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
