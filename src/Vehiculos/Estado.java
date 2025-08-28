@@ -12,7 +12,8 @@ public enum Estado {
     Disponible("Disponible"),
     En_Alquiler("En alquiler"),
     Reservado("Reservado"),
-    En_Mantenimiento("En_Mantenimiento");
+    En_Mantenimiento("En_Mantenimiento"),
+    Confirmada("Confirmada");
     
     private final String estado;
 

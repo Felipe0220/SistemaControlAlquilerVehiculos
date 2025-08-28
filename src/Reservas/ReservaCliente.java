@@ -9,6 +9,7 @@ import Excepciones.Excepcion;
 import Vehiculos.Estado;
 import static Vehiculos.Estado.Disponible;
 import Vehiculos.Tipo;
+import Vehiculos.Vehiculo;
 import java.time.LocalDate;
 
 /**
@@ -20,21 +21,22 @@ public class ReservaCliente {
     private Cliente cliente;
     private Estado estado;
     private Tipo tipo;
+    private Vehiculo vehiculo;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double costoTotal;
 
-    public ReservaCliente(String idReserva, Cliente cliente, Tipo tipo, LocalDate fechaInicio, LocalDate fechaFin, double costoTotal) throws Excepcion {
+    public ReservaCliente(String idReserva, Cliente cliente,Vehiculo vehiculo, Tipo tipo, LocalDate fechaInicio, LocalDate fechaFin, double costoTotal) throws Excepcion {
         this.idReserva = idReserva;
         
         
         this.cliente = cliente;
-        
+        this.vehiculo = vehiculo;
         
         this.estado = Disponible;
         
         
-        this.tipo = tipo;
+        this.tipo = vehiculo.getTipovehiculo();
         
          if (fechaInicio.isBefore(LocalDate.now())) {
         throw new Excepcion();
@@ -96,5 +98,13 @@ public class ReservaCliente {
             dias = 1;
         }
         costoTotal=dias*tarifaDiaria;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }
