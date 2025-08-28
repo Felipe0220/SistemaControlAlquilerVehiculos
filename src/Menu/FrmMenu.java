@@ -7,6 +7,7 @@ package Menu;
 
 import Clientes.InFr_GestionarCliente;
 import Clientes.InFr_BuscarCliente;
+import Clientes.ListaCliente;
 
 import Empleados.InFr_GestionarEmpleado;
 import Empleados.InFr_BuscarEmpleado;
@@ -34,6 +35,7 @@ public class FrmMenu extends javax.swing.JFrame {
      * Creates new form FrmMenu
      */
     private Listaempleados Listaempleados;
+    private ListaCliente ListaCliente;
     public FrmMenu() {
         initComponents();
          Listaempleados = new Listaempleados();
@@ -175,7 +177,7 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMIT_Ag_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIT_Ag_ClienteActionPerformed
-    InFr_GestionarCliente a = new InFr_GestionarCliente();
+    InFr_GestionarCliente a = new InFr_GestionarCliente(ListaCliente);
     this.jDesktopPane1.add(a);
     a.setVisible(true);
     }//GEN-LAST:event_jMIT_Ag_ClienteActionPerformed
